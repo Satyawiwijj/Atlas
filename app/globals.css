@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/*
+  Color usage rules (WCAG AA verified against Cloud #FAF7F2 and Ink #2E2A22):
+  - ink on cloud   = 13.36:1  -> the only color for body copy / small text on light backgrounds
+  - steel on cloud =  3.46:1  -> AA-large only (>=18px, or >=14px bold). Fine for the "tech" wordmark
+                                  half, oversized subheads, decorative captions. NOT small captions.
+  - ember on cloud =  2.54:1  -> fails even AA-large. Decorative only: dot, borders, icon fills,
+                                  button backgrounds (paired with cloud/ink text) - never as text color.
+  - halo on cloud  =  2.26:1  -> same as ember: decorative only, never as text color on light ground.
+  - ember on ink   =  5.26:1, halo on ink = 5.90:1 -> both fine as text on dark (ink) surfaces.
+  - ember-deep on cloud = 4.75:1 -> a darkened derivative of ember (same hue family, 70% lightness),
+                                  passes AA-normal. Use this, not ember, whenever ember is TEXT
+                                  (or a border/focus ring, which needs 3:1) on a light/cloud surface -
+                                  accent words in headlines, link/button hover states, etc. Plain
+                                  ember stays for decorative use on light grounds (dots, fills) and
+                                  for text on dark (ink) surfaces where it already passes on its own.
+
+  Ember-led accent decision: ember (or ember-deep on light surfaces) is the one accent color used
+  for every interactive/action element site-wide (links, buttons, hover states, focus rings,
+  selection, bullets). Halo is reserved for the brand mark (logo ring, opengraph/apple icons) only -
+  don't reintroduce it as a general UI accent, even though it passes contrast on ink, to keep one
+  consistent action color.
+*/
+
+@theme {
+  --color-cloud: #faf7f2;
+  --color-ink: #2e2a22;
+  --color-halo: #c9a227;
+  --color-ember: #d98c2b;
+  --color-ember-deep: #9a621c;
+  --color-steel: #8c8478;
+
+  --font-display: "Avenir Next", "Century Gothic", Futura, "Segoe UI", sans-serif;
+  --font-body: "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "Cascadia Code", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cloud);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background-color: var(--color-ember);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Logo's one-time signature load-in: the ring settles into its resting rotation as it fades in. */
+@keyframes nylor-ring-draw {
+  from {
+    stroke-dashoffset: var(--nylor-circumference);
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.nylor-ring-draw {
+  animation: nylor-ring-draw 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes nylor-spark-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.nylor-spark-fade {
+  transform-origin: center;
+  animation: nylor-spark-fade 350ms ease-out 500ms both;
+}
+
+/* Section entrance reveal, applied via the useRevealOnScroll hook - short and section-level only. */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero's on-load entrance: each child fades/lifts in on its own delay (set via inline style),
+   a cinematic staggered reveal rather than the whole block appearing at once. */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: var(--hero-opacity, 1);
+    transform: translateY(0);
+  }
+}
+
+.hero-in {
+  opacity: 0;
+  animation: hero-in 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--hero-delay, 0ms);
+}
