@@ -1,18 +1,12 @@
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { LogoMark } from "@/components/brand/LogoMark";
+import { OrbitField } from "@/components/brand/OrbitField";
 import { PageShell } from "@/components/layout/PageShell";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <LogoMark
-        size={420}
-        animate={false}
-        className="hero-in pointer-events-none absolute -right-32 -top-24 opacity-[0.09] md:-right-10 md:-top-16"
-        style={{ "--hero-delay": "0ms", "--hero-opacity": 0.09 } as React.CSSProperties}
-      />
-      <PageShell className="relative pt-16 pb-20 md:pt-24 md:pb-28">
+      <PageShell className="relative pt-16 pb-20 md:pt-24 md:pb-28 grid gap-4 md:grid-cols-[1fr_380px] md:items-center md:gap-12">
         <div className="max-w-3xl flex flex-col">
           <Eyebrow className="hero-in" style={{ "--hero-delay": "60ms" } as React.CSSProperties}>
             Nylor Tech — software studio
@@ -40,6 +34,11 @@ export function Hero() {
             </Button>
           </div>
         </div>
+
+        <OrbitField
+          className="hero-in pointer-events-none order-first md:order-last w-48 mx-auto md:w-full md:mx-0 [--hero-opacity:0.7] md:[--hero-opacity:1]"
+          style={{ "--hero-delay": "40ms" } as React.CSSProperties}
+        />
       </PageShell>
     </section>
   );

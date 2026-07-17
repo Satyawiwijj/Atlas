@@ -18,8 +18,8 @@ export function useRevealOnScroll<T extends HTMLElement>() {
     if (!node) return;
 
     if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
+      const id = window.setTimeout(() => setVisible(true), 0);
+      return () => window.clearTimeout(id);
     }
 
     const observer = new IntersectionObserver(

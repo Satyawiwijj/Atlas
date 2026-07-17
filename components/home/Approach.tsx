@@ -25,7 +25,7 @@ export function Approach() {
     <section className="py-16 md:py-20 border-t border-ink/10">
       <Reveal>
         <SectionHeading eyebrow="How we work" title="A process built to be predictable." />
-        <ol className="grid md:grid-cols-4 gap-x-8 gap-y-12 mt-14">
+        <ol className="stagger-children grid md:grid-cols-4 gap-x-8 gap-y-12 mt-14">
           {STEPS.map((step, i) => (
             <li key={step.title} className="flex flex-col gap-3">
               <span className="font-display text-4xl md:text-5xl font-bold text-ink/15">

@@ -17,6 +17,12 @@ const LINKS = [
 export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
+
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -24,10 +30,6 @@ export function Nav() {
       document.body.style.overflow = "";
     };
   }, [open]);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <header className="relative z-50 pt-8 md:pt-10">

@@ -4,9 +4,9 @@ import type { ReactNode } from "react";
 import { useRevealOnScroll } from "@/lib/useRevealOnScroll";
 
 export function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const reveal = useRevealOnScroll<HTMLDivElement>();
+  const { ref, className: revealClassName } = useRevealOnScroll<HTMLDivElement>();
   return (
-    <div ref={reveal.ref} className={`${reveal.className} ${className}`}>
+    <div ref={ref} className={`${revealClassName} ${className}`}>
       {children}
     </div>
   );

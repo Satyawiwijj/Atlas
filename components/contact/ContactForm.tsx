@@ -4,11 +4,6 @@ import { useState, type FormEvent } from "react";
 import { ButtonSubmit } from "@/components/ui/Button";
 import { SERVICES } from "@/lib/content";
 
-// TODO: replace with a real Web3Forms access key before launch.
-// Get one free at https://web3forms.com (enter an email, no account/password needed,
-// the key arrives by email). Web3Forms then forwards every submission to that inbox.
-const WEB3FORMS_ACCESS_KEY = "REPLACE_WITH_WEB3FORMS_ACCESS_KEY";
-
 type Status = "idle" | "submitting" | "success" | "error";
 
 export function ContactForm() {
@@ -19,10 +14,9 @@ export function ContactForm() {
     setStatus("submitting");
 
     const formData = new FormData(event.currentTarget);
-    formData.append("access_key", WEB3FORMS_ACCESS_KEY);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         body: formData,
       });

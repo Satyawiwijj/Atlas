@@ -8,7 +8,7 @@ export function ServicesTeaser() {
     <section className="py-16 md:py-20 border-t border-ink/10">
       <Reveal>
         <SectionHeading eyebrow="What we do" title="Anything tech, done properly." />
-        <div className="mt-4">
+        <div className="stagger-children mt-4">
           {SERVICES.map((service, i) => (
             <Link
               key={service.slug}

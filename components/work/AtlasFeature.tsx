@@ -1,4 +1,4 @@
-import { LogoMark } from "@/components/brand/LogoMark";
+import { OrbitField } from "@/components/brand/OrbitField";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SERVICES, type CaseStudy } from "@/lib/content";
 
@@ -7,10 +7,9 @@ export function AtlasFeature({ caseStudy }: { caseStudy: CaseStudy }) {
 
   return (
     <section className="relative overflow-hidden rounded-3xl border border-ink/10 px-8 py-16 md:px-16 md:py-24">
-      <LogoMark
-        size={420}
-        animate={false}
-        className="pointer-events-none absolute -right-24 -top-24 opacity-[0.08] md:-right-16 md:-top-16"
+      <OrbitField
+        parallax={false}
+        className="pointer-events-none absolute -right-24 -top-24 w-[420px] opacity-[0.16]"
       />
       <div className="relative flex flex-col max-w-2xl">
         <Eyebrow>{caseStudy.tagline}</Eyebrow>

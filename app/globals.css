@@ -31,8 +31,8 @@
   --color-ember-deep: #9a621c;
   --color-steel: #8c8478;
 
-  --font-display: "Avenir Next", "Century Gothic", Futura, "Segoe UI", sans-serif;
-  --font-body: "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-display: var(--font-bricolage), "Segoe UI", sans-serif;
+  --font-body: var(--font-public-sans), "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono), "Cascadia Code", monospace;
 }
 
@@ -107,6 +107,47 @@ body {
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Opt-in stagger for grids/lists inside a .reveal block: each direct child gets a slightly
+   later transition-delay (by DOM order) so a row of cards/steps arrives as a ripple, not a
+   single flat block. Covers up to 6 children, which is every grid in this site. */
+.reveal .stagger-children > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+
+.reveal-visible .stagger-children > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-visible .stagger-children > *:nth-child(2) { transition-delay: 80ms; }
+.reveal-visible .stagger-children > *:nth-child(3) { transition-delay: 160ms; }
+.reveal-visible .stagger-children > *:nth-child(4) { transition-delay: 240ms; }
+.reveal-visible .stagger-children > *:nth-child(5) { transition-delay: 320ms; }
+.reveal-visible .stagger-children > *:nth-child(6) { transition-delay: 400ms; }
+
+.reveal-visible .stagger-children > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero signature: the brand's ring-gap-spark mark made kinetic. Each ring rotates about its
+   own center at a different, deliberately slow speed/direction so the whole thing reads as a
+   quiet orbital system, not a spinner. transform-box keeps the rotation centered on the ring's
+   own bounding box regardless of its position in the wider viewBox. */
+.orbit-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: orbit-cw 48s linear infinite;
+}
+
+.orbit-ring-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes orbit-cw {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Hero's on-load entrance: each child fades/lifts in on its own delay (set via inline style),

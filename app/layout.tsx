@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Bricolage_Grotesque, Public_Sans } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -9,6 +10,22 @@ const jetbrainsMono = localFont({
   src: "./fonts/JetBrainsMono-Variable.woff2",
   variable: "--font-jetbrains-mono",
   weight: "100 800",
+  display: "swap",
+});
+
+// Display face: a geometric grotesk with slightly irregular terminals - echoes the
+// logomark's own asymmetric ring-gap rather than reaching for the cream+serif combo
+// this palette would otherwise default to.
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+// Body face: quiet and built for reading, deliberately not Inter/Roboto/system-ui.
+const publicSans = Public_Sans({
+  subsets: ["latin"],
+  variable: "--font-public-sans",
   display: "swap",
 });
 
@@ -42,7 +59,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${jetbrainsMono.variable} h-full antialiased`}
+      className={`${jetbrainsMono.variable} ${bricolage.variable} ${publicSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Nav />

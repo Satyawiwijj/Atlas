@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfo } from "@/components/contact/ContactInfo";
 import { AbstractRings } from "@/components/brand/AbstractRings";
+import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -13,14 +14,16 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <PageShell className="py-16 md:py-24">
-      <SectionHeading
-        eyebrow="Contact"
-        as="h1"
-        title="Tell us what you're building."
-        description="A few details now saves a round of back-and-forth later."
-      />
+      <Reveal>
+        <SectionHeading
+          eyebrow="Contact"
+          as="h1"
+          title="Tell us what you're building."
+          description="A few details now saves a round of back-and-forth later."
+        />
+      </Reveal>
 
-      <div className="relative mt-16 grid md:grid-cols-[1fr_360px] gap-16">
+      <Reveal className="relative mt-16 grid md:grid-cols-[1fr_360px] gap-16">
         <ContactForm />
         <div className="relative">
           <ContactInfo />
@@ -29,7 +32,7 @@ export default function ContactPage() {
             className="pointer-events-none absolute -right-16 top-40 hidden lg:block"
           />
         </div>
-      </div>
+      </Reveal>
     </PageShell>
   );
 }

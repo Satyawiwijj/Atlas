@@ -12,7 +12,7 @@ export function ContactInfo() {
       </a>
       <p className="text-ink/80 max-w-sm">
         We reply within 1-2 business days. For an existing project, mention it in your message and
-        it'll get to the right person faster.
+        it&apos;ll get to the right person faster.
       </p>
     </div>
   );
