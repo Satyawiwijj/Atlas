@@ -20,7 +20,10 @@ export function Footer() {
         <ul className="flex flex-wrap gap-6">
           {LINKS.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="text-sm text-ink/80 hover:text-ember-deep transition-colors duration-200">
+              <Link
+                href={link.href}
+                className="inline-block -my-3 py-3 text-sm text-ink/80 hover:text-ember-deep transition-colors duration-200"
+              >
                 {link.label}
               </Link>
             </li>

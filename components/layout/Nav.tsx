@@ -39,7 +39,7 @@ export function Nav() {
 
           <button
             type="button"
-            className={`relative flex items-center gap-3 text-base md:text-lg font-semibold transition-colors duration-200 ${
+            className={`relative flex items-center gap-3 -my-3 py-3 text-base md:text-lg font-semibold transition-colors duration-200 ${
               open ? "text-cloud hover:text-ember" : "text-ink hover:text-ember-deep"
             }`}
             aria-expanded={open}
