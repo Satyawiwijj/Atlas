@@ -11,9 +11,10 @@ export function ContactForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     setStatus("submitting");
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
 
     try {
       const response = await fetch("/api/contact", {
@@ -23,7 +24,7 @@ export function ContactForm() {
       const result = await response.json();
       if (result.success) {
         setStatus("success");
-        event.currentTarget.reset();
+        form.reset();
       } else {
         setStatus("error");
       }
