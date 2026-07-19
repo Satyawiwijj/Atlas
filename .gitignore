@@ -42,3 +42,5 @@ next-env.d.ts
 
 # playwright verification artifacts (screenshots/logs from manual testing, not site content)
 /.playwright-mcp/
+
+.vercel

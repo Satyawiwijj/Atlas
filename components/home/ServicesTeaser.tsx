@@ -2,6 +2,9 @@ import Link from "next/link";
 import { SERVICES } from "@/lib/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ServiceMark } from "@/components/brand/ServiceMark";
+
+const MARK_ROTATIONS = [0, 130, 250];
 
 export function ServicesTeaser() {
   return (
@@ -13,9 +16,9 @@ export function ServicesTeaser() {
             <Link
               key={service.slug}
               href={`/services#${service.slug}`}
-              className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-x-6 md:gap-x-12 py-8 border-t border-ink/10 last:border-b transition-colors duration-200"
+              className="group grid grid-cols-[auto_1fr_auto] items-center gap-x-6 md:gap-x-12 py-8 border-t border-ink/10 last:border-b transition-colors duration-200"
             >
-              <span className="font-mono text-sm text-ink/70">{String(i + 1).padStart(2, "0")}</span>
+              <ServiceMark rotation={MARK_ROTATIONS[i % MARK_ROTATIONS.length]} />
               <span className="flex flex-col gap-1">
                 <span className="font-display text-2xl md:text-3xl font-semibold text-ink group-hover:text-ember-deep transition-colors duration-200">
                   {service.title}
