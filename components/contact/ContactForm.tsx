@@ -37,7 +37,7 @@ export function ContactForm() {
     return (
       <div className="rounded-2xl border border-ink/10 p-8">
         <p className="font-display text-xl font-semibold text-ink">Message sent.</p>
-        <p className="mt-2 text-ink/80">We reply within 1-2 business days.</p>
+        <p className="mt-2 text-ink/80">We reply within a few hours during US business hours.</p>
       </div>
     );
   }

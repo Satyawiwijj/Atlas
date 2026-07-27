@@ -45,13 +45,18 @@ export const SERVICES: Service[] = [
   },
 ];
 
+export type CaseStudyType = "real" | "in-progress" | "concept";
+
 export type CaseStudy = {
   slug: string;
   name: string;
   tagline: string;
   description: string;
   serviceSlugs: string[];
+  type: CaseStudyType;
   featured?: boolean;
+  stats?: { label: string; value: string }[];
+  techStack?: string[];
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -62,6 +67,28 @@ export const CASE_STUDIES: CaseStudy[] = [
     description:
       "Atlas tells B2B companies who to contact, why they're likely to buy, and what to say to them — a ranked, evidence-backed judgment, not another lead list. Every recommendation traces back to the evidence behind it by design: if we can't show our work, it doesn't ship.",
     serviceSlugs: ["websites", "automation-agents", "custom-software"],
+    type: "in-progress",
     featured: true,
+    techStack: ["Next.js", "TypeScript", "PostgreSQL", "OpenAI"],
+  },
+  {
+    slug: "meridian-dashboard",
+    name: "Meridian Analytics",
+    tagline: "Real-time ops dashboard — what we can build.",
+    description:
+      "A real-time dashboard that pulls from three data sources and updates every 30 seconds — replacing manual Excel reports. This is the kind of internal tooling we build for operations teams.",
+    serviceSlugs: ["websites", "custom-software"],
+    type: "concept",
+    techStack: ["React", "Node.js", "WebSocket", "Tailwind"],
+  },
+  {
+    slug: "beacon-crm",
+    name: "Beacon CRM",
+    tagline: "Custom CRM — what we can build.",
+    description:
+      "Off-the-shelf CRMs were either too complex or too simple. We build lightweight, opinionated tools that track client relationships, deal stages, and follow-ups without the bloat. This is the type of custom software we deliver.",
+    serviceSlugs: ["custom-software", "automation-agents"],
+    type: "concept",
+    techStack: ["Next.js", "Supabase", "TypeScript", "Tailwind"],
   },
 ];

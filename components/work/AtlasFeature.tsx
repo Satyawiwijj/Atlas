@@ -9,7 +9,12 @@ export function AtlasFeature({ caseStudy }: { caseStudy: CaseStudy }) {
     <section className="relative overflow-hidden rounded-3xl border border-ink/10 px-8 py-16 md:px-16 md:py-24">
       <div className="relative grid gap-8 md:grid-cols-[1fr_320px] md:items-center md:gap-16">
         <div className="flex flex-col max-w-2xl order-2 md:order-1">
-          <Eyebrow>{caseStudy.tagline}</Eyebrow>
+          <div className="flex items-center gap-3">
+            <Eyebrow>{caseStudy.tagline}</Eyebrow>
+            <span className="font-mono text-[10px] uppercase tracking-[0.14em] border border-halo/30 bg-halo/10 text-ink rounded-full px-2.5 py-0.5">
+              In development
+            </span>
+          </div>
           <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-ink mt-5">
             {caseStudy.name}
           </h1>
@@ -24,6 +29,30 @@ export function AtlasFeature({ caseStudy }: { caseStudy: CaseStudy }) {
               </li>
             ))}
           </ul>
+
+          {caseStudy.stats && caseStudy.stats.length > 0 && (
+            <div className="flex flex-wrap gap-8 mt-8">
+              {caseStudy.stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col">
+                  <span className="font-display text-3xl font-bold text-ember-deep">{stat.value}</span>
+                  <span className="text-sm text-ink/60 mt-1">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {caseStudy.techStack && caseStudy.techStack.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-6">
+              {caseStudy.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="font-mono text-xs text-ink/50 border border-ink/10 rounded px-2 py-1"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         <AtlasVisual className="order-1 md:order-2 w-64 mx-auto md:w-full md:mx-0" />
       </div>

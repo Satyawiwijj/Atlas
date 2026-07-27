@@ -8,7 +8,7 @@ import { CASE_STUDIES } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Case studies from Nylor Tech, starting with our first product, Atlas.",
+  description: "Case studies from Nylor Tech — websites, web apps, and custom software we've built.",
 };
 
 export default function WorkPage() {
@@ -21,8 +21,8 @@ export default function WorkPage() {
         <SectionHeading
           eyebrow="Our work"
           as="h1"
-          title="What we've built."
-          description="A running record of what Nylor Tech ships — for ourselves and for clients."
+          title="What we build."
+          description="Our own product plus the kind of tools we build for clients — dashboards, CRMs, internal software, and AI agents."
         />
       </Reveal>
 
