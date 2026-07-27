@@ -1,6 +1,14 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const PRICING = [
   {
@@ -29,7 +37,54 @@ const PRICING = [
   },
 ];
 
+// The four tiers are parallel options, not a sequence, so they reveal outward from the
+// grid's center rather than in reading order - the same reasoning that replaced the
+// service list's 01/02/03 numerals. Grid dimensions differ from ServicesTeaser's
+// hardcoded numbers only in that this is a real 2x2 grid on desktop and a single column
+// on mobile, so the stagger shape is matched to each via matchMedia rather than assumed.
 export function Pricing() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".pricing-card", {
+          opacity: 0,
+          y: 16,
+          scale: 0.96,
+          duration: 0.5,
+          ease: "power3.out",
+          stagger: { grid: [2, 2], from: "center", amount: 0.35 },
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      });
+
+      mm.add("(max-width: 767px) and (prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".pricing-card", {
+          opacity: 0,
+          y: 16,
+          duration: 0.4,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      });
+
+      return () => mm.revert();
+    },
+    { scope: gridRef },
+  );
+
   return (
     <section className="py-16 md:py-20 border-t border-ink/10">
       <Reveal>
@@ -38,11 +93,11 @@ export function Pricing() {
           title="Transparent ranges, not surprises."
           description="Every project is scoped on a call. These are typical ranges — your project may be more or less depending on complexity."
         />
-        <div className="grid md:grid-cols-2 gap-6 mt-10">
+        <div ref={gridRef} className="grid md:grid-cols-2 gap-6 mt-10">
           {PRICING.map((item) => (
             <div
               key={item.service}
-              className="rounded-2xl border border-ink/10 p-6 md:p-8 hover:border-ember-deep/30 transition-colors duration-300"
+              className="pricing-card rounded-2xl border border-ink/10 p-6 md:p-8 hover:border-ember-deep/30 transition-colors duration-300"
             >
               <div className="flex items-start justify-between gap-4">
                 <h3 className="font-display text-lg font-semibold text-ink">{item.service}</h3>
