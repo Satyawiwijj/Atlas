@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import gsap from "gsap";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -39,6 +40,46 @@ const FAQ = [
 
 export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  function toggle(i: number) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const next = openIndex === i ? null : i;
+
+    if (openIndex !== null) {
+      const prevPanel = panelRefs.current[openIndex];
+      if (prevPanel) {
+        if (reducedMotion) {
+          gsap.set(prevPanel, { height: 0 });
+        } else {
+          gsap.set(prevPanel, { height: prevPanel.scrollHeight });
+          gsap.to(prevPanel, { height: 0, duration: 0.3, ease: "power2.inOut" });
+        }
+      }
+    }
+
+    if (next !== null) {
+      const panel = panelRefs.current[next];
+      if (panel) {
+        if (reducedMotion) {
+          gsap.set(panel, { height: "auto" });
+        } else {
+          gsap.fromTo(
+            panel,
+            { height: 0 },
+            {
+              height: panel.scrollHeight,
+              duration: 0.35,
+              ease: "power2.out",
+              onComplete: () => gsap.set(panel, { height: "auto" }),
+            },
+          );
+        }
+      }
+    }
+
+    setOpenIndex(next);
+  }
 
   return (
     <section className="py-16 md:py-20 border-t border-ink/10">
@@ -53,7 +94,7 @@ export function Faq() {
             <div key={item.question} className="border-b border-ink/10">
               <button
                 type="button"
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                onClick={() => toggle(i)}
                 className="flex items-center justify-between gap-4 w-full py-5 text-left"
                 aria-expanded={openIndex === i}
               >
@@ -69,11 +110,15 @@ export function Faq() {
                   +
                 </span>
               </button>
-              {openIndex === i && (
-                <p className="pb-5 text-sm md:text-base text-ink/70 leading-relaxed">
-                  {item.answer}
-                </p>
-              )}
+              <div
+                ref={(el) => {
+                  panelRefs.current[i] = el;
+                }}
+                className="overflow-hidden"
+                style={{ height: 0 }}
+              >
+                <p className="pb-5 text-sm md:text-base text-ink/70 leading-relaxed">{item.answer}</p>
+              </div>
             </div>
           ))}
         </div>

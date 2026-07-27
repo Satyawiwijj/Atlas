@@ -168,3 +168,20 @@ body {
   animation: hero-in 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: var(--hero-delay, 0ms);
 }
+
+/* ServiceMark's draw-in: stroke-dashoffset only, kept separate from .nylor-ring-draw so it
+   doesn't inherit that animation's opacity:1 end state - this mark rests at partial opacity
+   (a secondary accent, not the full-strength logo ring), so opacity is handled by a plain
+   transition alongside this instead of baked into the keyframe. */
+@keyframes service-mark-draw {
+  from {
+    stroke-dashoffset: var(--nylor-circumference);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.service-mark-draw {
+  animation: service-mark-draw 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
