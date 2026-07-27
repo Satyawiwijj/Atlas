@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className="border-t border-ink/10 py-12 mt-auto">
       <PageShell className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-        <Logo size={24} animate={false} />
+        <Logo size={24} animate={false} className="-my-3 py-3" />
 
         <ul className="flex flex-wrap gap-6">
           {LINKS.map((link) => (

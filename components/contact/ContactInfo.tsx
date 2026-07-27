@@ -17,7 +17,7 @@ export function ContactInfo() {
       <div className="rounded-xl border border-ink/10 p-4">
         <p className="text-sm font-medium text-ink">US Working Hours</p>
         <p className="text-sm text-ink/70 mt-1">9am - 6pm EST, Monday - Friday</p>
-        <p className="text-xs text-ink/50 mt-2">
+        <p className="text-xs text-ink/70 mt-2">
           Overlap for live calls. Async via Slack, Loom, and docs.
         </p>
       </div>

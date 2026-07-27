@@ -51,7 +51,7 @@ export function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
           {caseStudy.techStack.map((tech) => (
             <span
               key={tech}
-              className="font-mono text-xs text-ink/50 border border-ink/10 rounded px-2 py-1"
+              className="font-mono text-xs text-ink/70 border border-ink/10 rounded px-2 py-1"
             >
               {tech}
             </span>

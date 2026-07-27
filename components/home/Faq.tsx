@@ -102,7 +102,7 @@ export function Faq() {
                   {item.question}
                 </span>
                 <span
-                  className={`text-ink/50 transition-transform duration-200 ${
+                  className={`text-ink/70 transition-transform duration-200 ${
                     openIndex === i ? "rotate-45" : ""
                   }`}
                   aria-hidden="true"

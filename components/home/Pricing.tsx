@@ -106,11 +106,11 @@ export function Pricing() {
                 </span>
               </div>
               <p className="mt-3 text-sm text-ink/70">{item.description}</p>
-              <p className="mt-2 text-xs text-ink/50">Typical timeline: {item.timeline}</p>
+              <p className="mt-2 text-xs text-ink/70">Typical timeline: {item.timeline}</p>
             </div>
           ))}
         </div>
-        <p className="mt-8 text-sm text-ink/60 text-center">
+        <p className="mt-8 text-sm text-ink/70 text-center">
           Not sure what you need?{" "}
           <Link href="/contact" className="text-ember-deep hover:underline">
             Tell us what you&apos;re building

@@ -69,7 +69,7 @@ export function StatsSection() {
               >
                 {stat.display}
               </span>
-              <span className="text-sm text-ink/60">{stat.label}</span>
+              <span className="text-sm text-ink/70">{stat.label}</span>
             </div>
           ))}
         </div>

@@ -35,7 +35,7 @@ export function AtlasFeature({ caseStudy }: { caseStudy: CaseStudy }) {
               {caseStudy.stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col">
                   <span className="font-display text-3xl font-bold text-ember-deep">{stat.value}</span>
-                  <span className="text-sm text-ink/60 mt-1">{stat.label}</span>
+                  <span className="text-sm text-ink/70 mt-1">{stat.label}</span>
                 </div>
               ))}
             </div>
@@ -46,7 +46,7 @@ export function AtlasFeature({ caseStudy }: { caseStudy: CaseStudy }) {
               {caseStudy.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="font-mono text-xs text-ink/50 border border-ink/10 rounded px-2 py-1"
+                  className="font-mono text-xs text-ink/70 border border-ink/10 rounded px-2 py-1"
                 >
                   {tech}
                 </span>
